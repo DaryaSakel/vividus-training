@@ -35,9 +35,9 @@ Examples:
 |linkText(Sauce Labs Backpack) |xpath(//*[@id="item_0_title_link"])|xpath(//*[@id="add-to-cart-sauce-labs-bolt-t-shirt"])|
 
 
-!--Scenario: Validate the num of items in the shopping cart
+Scenario: Validate the num of items in the shopping cart
 
-!--Then `xpath(//*[@id="shopping_cart_badge"])` is equal to `3`
+When `xpath(//*[@id=shopping_cart_badge=3])
 
 Scenario: Log Out
 When I click on element located by `cssSelector(#react-burger-menu-btn)`
