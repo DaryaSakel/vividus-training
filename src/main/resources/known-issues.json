@@ -1,15 +1,14 @@
 {
 "BUG-001": {
   "type": "Internal",
-  "assertionPattern": ".*Expected: \"https:\\/\\/saucedemo.com/inventory.html\\/\" Actual: was\"https:\\/\\/www.saucedemo.com\\/\".*",
-  "scenarioPattern": "Navigate to the website homepage.*",
-  "stepPattern": "Then \\`\\$\\{current-page-url\\}\\` is equal to\\`https:\\/\\/saucedemo.com/inventory.html\\/\\`",
-  "description": "Website URL to be fixed in the upcoming release"
+  "assertionPattern": ".*Expected: \"https:\\/\\/www.saucedemo.com\\/inventory.html\" Actual: was \"https:\\/\\/www.saucedemo.com\\/\".*",
+  "scenarioPattern": "Log in as Locked User",
+  "storyPattern": "Task_5"
 },
   "BUG-002": {
     "type": "Internal",
-    "assertionPattern": "Expected: number of elements is a value equal to \\<6\\> Actual: \\<0\\>",
+    "assertionPattern": ".*Expected: number of elements is a value equal to <6> Actual: <0>.*",
     "scenarioPattern": "Log in as Locked User",
-    "stepPattern": "Then number of elements found by \\`className(inventory_item)\\` is equal to \\`6\\`"
+    "storyPattern": "Task_5"
   }
 }
