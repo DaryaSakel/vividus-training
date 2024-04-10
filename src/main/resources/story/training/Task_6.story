@@ -28,8 +28,6 @@ When I click on element located by `<itemPageId>`
 When I click on element located by `${addToCart}`
 When I click on element located by `${back}`
 When I click on element located by `<addToCardButtonId>`
-
-
 Examples:
 |itemName                      |itemPageId                         |addToCardButtonId                                    |
 |linkText(Sauce Labs Backpack) |xpath(//*[@id="item_0_title_link"])|xpath(//*[@id="add-to-cart-sauce-labs-bolt-t-shirt"])|
@@ -37,7 +35,8 @@ Examples:
 
 Scenario: Validate the num of items in the shopping cart
 
-When `xpath(//*[@id=shopping_cart_badge=3])
+Then number of elements found by `xpath(//span[contains(@class,'badge') and contains(text(),3)])` is equal to `1`
+
 
 Scenario: Log Out
 When I click on element located by `cssSelector(#react-burger-menu-btn)`
