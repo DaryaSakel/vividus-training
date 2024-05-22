@@ -42,18 +42,7 @@ When I click on element located by `buttonName(Continue)`
 
 Scenario: Validate order summary and complete order
 Then `${current-page-url}` is equal to `https://www.saucedemo.com/checkout-step-two.html`
-When I save text of element located by `xpath(//h2)` to scenario variable `subTotal1`
-When I save text of element located by `xpath(//h2)` to scenario variable `subTotal2`
-
-//*[@id="checkout_summary_container"]/div/div[1]/div[3]/div[2]/div[2]/div
-driver.findElement(By.xpath("//div[@class="inventory_item_price"][normalize-space()="$7.99"]"))
-
-//*[@id="checkout_summary_container"]/div/div[1]
-/div[3]/div[2]/div[2]/div
-
-
-//div[@class="cart_list"]/div[1]/div
-
-div[contains(@class,"inventory_item_price")]
-
-driver.findElement(By.xpath("//body/div[@id="root"]/div[@id="page_wrapper"]/div[@id="contents_wrapper"]/div[@id="checkout_summary_container"]/div/div[@class="cart_list"]/div[3]/div[2]"))
+When I save text of element located by `xpath(//*[@class="cart_list"]/div[3]/div[2]/div[2]/div[1])` to scenario variable `subTotal1`
+When I save text of element located by `xpath(//*[@class="cart_list"]/div[4]/div[2]/div[2]/div[1])` to scenario variable `subTotal2`
+When I save text of element located by `xpath(//*[@class="summary_subtotal_label"])` to scenario variable `subTotal`
+Then `#{eval(${subTotal1} + ${subTotal2})}` is = `${subTotal}`
