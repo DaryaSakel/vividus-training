@@ -62,5 +62,3 @@ When I click on element located by `buttonName(Finish)`
 When I save text of element located by `xpath(//h2)` to scenario variable `thankYou`
 Given I initialize scenario variable `message` with value `#{loadResource(/data/message.txt)}`
 Then `#{eval(`${thankYou}` == `${message}`)}` is = `true`
-
-
