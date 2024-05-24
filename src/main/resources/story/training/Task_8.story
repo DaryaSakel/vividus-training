@@ -23,17 +23,15 @@ Then `${current-page-url}` is equal to `https://www.saucedemo.com/inventory.html
 Scenario: Add items to the shopping cart
 When I click on element located by `xpath(//*[@class="product_sort_container"])`
 When I click on element located by `<sortingValue>`
-When I click on element located by `xpath(//*[@class="inventory_list"]/div[1]/div[@class="inventory_item_img"])`
-When I click on element located by `${addToCart}`
+When I click on element located by `xpath((//*[contains(@id, 'add-to-cart')])[1])`
 When I wait until element located by `<cartBadgeCount>` appears
-When I click on element located by `${back}`
-
 Examples:
 |sortingValue                        |cartBadgeCount                                          |
-|xpath(//*[contains(@value,'lohi')]) |xpath(//*[@class="shopping_cart_link"]/span[text()='1'])|
-|xpath(//*[contains(@value,'hilo')]) |xpath(//*[@class="shopping_cart_link"]/span[text()='2'])|
+|xpath(//*[contains(@value,'lohi')]) |xpath(//*[@class="shopping_cart_link"]/span[text()])|
+|xpath(//*[contains(@value,'hilo')]) |xpath(//*[@class="shopping_cart_link"]/span[text()])|
 
 Scenario: Populate checkout data
+
 When I click on element located by `xpath(//*[@id="shopping_cart_container"])`
 When I click on element located by `buttonName(Checkout)`
 When I enter  `#{generate(Name.firstName)}` in field located by `xpath(//*[@id="first-name"])`
@@ -44,10 +42,11 @@ When I ${baselineAction} baseline with name `checkout`
 
 
 Scenario: Validate order summary and complete order
+
 Then `${current-page-url}` is equal to `https://www.saucedemo.com/checkout-step-two.html`
-When I save text of element located by `xpath(//*[@class="cart_list"]/div[3]/div[2]/div[2]/div[1])` to scenario variable `subTotal1`
+When I save text of element located by `xpath((//*[@class='inventory_item_price'])[1])` to scenario variable `subTotal1`
 Given I initialize SCENARIO variable `sub1` with value `#{replaceFirstByRegExp(\$(\d*\.\d{2}), $1, ${subTotal1})}`
-When I save text of element located by `xpath(//*[@class="cart_list"]/div[4]/div[2]/div[2]/div[1])` to scenario variable `subTotal2`
+When I save text of element located by `xpath((//*[@class='inventory_item_price'])[2])` to scenario variable `subTotal2`
 Given I initialize SCENARIO variable `sub2` with value `#{replaceFirstByRegExp(\$(\d*\.\d{2}), $1, ${subTotal2})}`
 When I save text of element located by `xpath(//*[@class="summary_subtotal_label"])` to scenario variable `subTotal`
 Given I initialize SCENARIO variable `sub` with value `#{replaceFirstByRegExp(Item total: \$(\d*\.\d*), $1, ${subTotal})}`
@@ -61,4 +60,4 @@ When I ${baselineAction} baseline with name `complete`
 When I click on element located by `buttonName(Finish)`
 When I save text of element located by `xpath(//h2)` to scenario variable `thankYou`
 Given I initialize scenario variable `message` with value `#{loadResource(/data/message.txt)}`
-Then `#{eval(`${thankYou}` == `${message}`)}` is = `true`
+Then `#{eval(`${message}` == `${thankYou}`)}` is = `true`

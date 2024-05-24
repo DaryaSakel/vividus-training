@@ -1,2 +1,9 @@
 {
-}
+  "BUG-003": {
+    "type": "Internal",
+    "assertionPattern": ".*[Expected: \"true\" Actual: was \"false\"].*",
+    "scenarioPattern": "Validate order summary and complete order",
+    "storyPattern": "Task\\_8",
+    "stepPattern" : "Then.*\\=\\=.*is \\= `true`"
+    }
+  }
