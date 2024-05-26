@@ -39,6 +39,7 @@ When I enter  `#{generate(Name.firstName)}` in field located by `xpath(//*[@id="
 When I enter  `#{generate(regexify '[A-Z]{3}[a-z]{4}')}` in field located by `xpath(//*[@id="last-name"])`
 When I enter  `#{generate(regexify '[A-Z]{3}-[1-9]{5}')}` in field located by `xpath(//*[@id="postal-code"])`
 When I ${baselineAction} baseline with name `checkout`
+
 When I click on element located by `buttonName(Continue)`
 
 
