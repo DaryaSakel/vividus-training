@@ -27,25 +27,22 @@ When I click on element located by `xpath((//*[contains(@id, 'add-to-cart')])[1]
 When I wait until element located by `<cartBadgeCount>` appears
 When I wait until element located by `xpath((//*[contains(@name, 'remove')])[1])` appears
 Examples:
-|sortingValue                        |cartBadgeCount                                          |
-|xpath(//*[contains(@value,'lohi')]) |xpath(//*[@class="shopping_cart_link"]/span[text()])|
-|xpath(//*[contains(@value,'hilo')]) |xpath(//*[@class="shopping_cart_link"]/span[text()])|
+|sortingValue                        |cartBadgeCount                                                   |
+|xpath(//*[contains(@value,'lohi')]) |xpath(//*[@class="shopping_cart_badge" and contains(text(),"1")])|
+|xpath(//*[contains(@value,'hilo')]) |xpath(//*[@class="shopping_cart_badge" and contains(text(),"2")])|
 
 Scenario: Populate checkout data
-
 When I click on element located by `xpath(//*[@id="shopping_cart_container"])`
 When I click on element located by `buttonName(Checkout)`
 When I enter  `#{generate(Name.firstName)}` in field located by `xpath(//*[@id="first-name"])`
 When I enter  `#{generate(regexify '[A-Z]{3}[a-z]{4}')}` in field located by `xpath(//*[@id="last-name"])`
 When I enter  `#{generate(regexify '[A-Z]{3}-[1-9]{5}')}` in field located by `xpath(//*[@id="postal-code"])`
-When I ${baselineAction} baseline with name `checkout`
-
+When I ${baselineAction} baseline with name `checkout` ignoring:
+|ACCEPTABLE_DIFF_PERCENTAGE|
+|5                         |
 When I click on element located by `buttonName(Continue)`
 
-
-
 Scenario: Validate order summary and complete order
-
 Then `${current-page-url}` is equal to `https://www.saucedemo.com/checkout-step-two.html`
 When I save text of element located by `xpath((//*[@class='inventory_item_price'])[1])` to scenario variable `subTotal1`
 Given I initialize SCENARIO variable `sub1` with value `#{replaceFirstByRegExp(\$(\d*\.\d{2}), $1, ${subTotal1})}`
